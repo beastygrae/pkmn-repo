@@ -21,7 +21,9 @@ app.use( cors() );
 
 // Set the port.
 app.use("/vote", vote);
-const port = 3000;
+
+const port = process.env.port || 3000;
+
 // Listen to incoming connections.
 app.listen(port, () => {
   console.log(`Server started on port ${port}.`);
