@@ -69,7 +69,7 @@ $(document).ready(function () {
 			dataPoints = dataPoints.map(function (d) {
 				// Check if the current label is the updated value.
 				if (d.label == data.starter) {
-					// Increment the house's value by the number of new points.
+					// Increment the starter's value by the number of new points.
 					d.y += data.points;
 				}
 				// Return the original value as this is a map function.
