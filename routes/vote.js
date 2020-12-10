@@ -20,7 +20,6 @@ router.get("/", (req, res) => {
 
 // Default POST route.
 router.post("/", (req, res) => {
-consol.log('test',req.body.starter);
     pusher.trigger('pkmn-voting', 'pkmn-starter', {
     "points": 1,
     "starter": req.body.starter
