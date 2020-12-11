@@ -7,19 +7,18 @@ const cors = require("cors");
 const app = express();
 
 //Vote route.
-const vote=require("./routes/vote")
+const vote = require("./routes/vote")
 
 // Serve the static files from public.
-app.use( express.static( path.join(__dirname, "public") ) );
+app.use(express.static(path.join(__dirname, "public")));
 
 // Include the body-parser middleware.
-app.use( bodyParser.json() );
-app.use( bodyParser.urlencoded( { extended: false } ) );
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Enable CORS.
-app.use( cors() );
+app.use(cors());
 
-// Set the port.
 app.use("/vote", vote);
 
 const port = process.env.port || 3000;

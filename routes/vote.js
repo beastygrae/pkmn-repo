@@ -4,6 +4,7 @@ const router = express.Router();
 const PusherServerConfig = require("../config/config");
 
 const Pusher = require('pusher');
+var results = {Charmander: 0, Squirtle: 0, Bulbasaur: 0}
 
 const pusher = new Pusher({
   appId: PusherServerConfig.appId,
@@ -19,16 +20,13 @@ router.get("/", (req, res) => {
 });
 
 // Default POST route.
-router.post("/", (req, res) => {
-    pusher.trigger('pkmn-voting', 'pkmn-starter', {
-    "points": 1,
-    "starter": req.body.starter
-  });
+router.post("/star", (req, res) => {
 
-  return res.json({
-    "success": true,
-    "message": "Thanks for voting."
-  });
+    const voteKey = req.body.starter;
+    results[voteKey] += 1
+    
+    pusher.trigger('pkmn-voting', 'pkmn-starter', results);
+
 });
 
 // Export the router.
