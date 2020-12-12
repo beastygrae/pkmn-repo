@@ -7,8 +7,8 @@ const PusherConfig = {
 
 // Execute only after the whole document is fetched and assets are loaded.
 $(document).ready(function () {
-	// Form submission event listener (event handler)
-    	// Create the base data points.
+	
+    // Create the base data points.
 	var dataPoints = [
 		{
 			label: "Charmander",
@@ -36,6 +36,7 @@ $(document).ready(function () {
 			]
 		};
     }
+    // Form submission event listener (event handler)
 	$("#voteForm").submit(function (e) {
 		// Prevent the default event.
 		e.preventDefault();
@@ -63,10 +64,6 @@ $(document).ready(function () {
 		var options = createOptions(dataPoints)
 		// Initialise the chart.
 		$("#chartContainer").CanvasJSChart(options);
-
-		// Subscribe to Pusher
-		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
 
 		// Initialise a Pusher Object.
 		var pusher = new Pusher(PusherConfig.key, {
