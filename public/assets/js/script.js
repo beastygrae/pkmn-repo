@@ -8,22 +8,7 @@ const PusherConfig = {
 // Execute only after the whole document is fetched and assets are loaded.
 $(document).ready(function () {
 	// Form submission event listener (event handler)
-	$("#voteForm").submit(function (e) {
-		// Prevent the default event.
-		e.preventDefault();
-		// Get the checked input element's value.
-		var starter = $(".form-check-input:checked").val();
-
-        //storing object in data variable
-        var data = {"starter":starter}
-        
-		// Fire the POST request AJAX call to our /vote end point.
-		$.post("/vote/star", data, function (res) {
-			// Log the output in the console.
-			console.log(res);
-		});
-	});
-	// Create the base data points.
+    	// Create the base data points.
 	var dataPoints = [
 		{
 			label: "Charmander",
@@ -51,6 +36,24 @@ $(document).ready(function () {
 			]
 		};
     }
+	$("#voteForm").submit(function (e) {
+		// Prevent the default event.
+		e.preventDefault();
+		// Get the checked input element's value.
+		var starter = $(".form-check-input:checked").val();
+        console.log(starter);
+        if(starter != undefined){
+            //storing object in data variable
+            var data = {"starter":starter}
+            $.post("/vote/star", data, function (res) {
+            // Log the output in the console.
+            console.log(res);
+            });
+	   }else{
+           delete(starter);
+           window.alert("Try selecting a starter.")
+       };
+    });
 	// Initialise Chart using jQuery selector.
 	// Get the chart container element.
 	var chartContainer = $("#chartContainer");
